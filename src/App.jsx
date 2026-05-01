@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
 import OpeningAnimation from './components/OpeningAnimation';
 import BackgroundStars from './components/BackgroundStars';
 import ParallaxBackground from './components/ParallaxBackground';
@@ -9,6 +10,22 @@ function App() {
   const audioRef = useRef(null);
 
   useEffect(() => {
+    // Initialize Lenis Smooth Scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
     // Audio Logic
     const audio = audioRef.current;
     
@@ -45,6 +62,7 @@ function App() {
     }
 
     return () => {
+      lenis.destroy();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);

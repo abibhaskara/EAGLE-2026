@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'New Rocker', system-ui;
   background-color: var(--primary-color);
@@ -21,6 +25,7 @@ body {
   min-height: 100vh;
   letter-spacing: 0.5px;
   line-height: 1.5;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -53,9 +58,8 @@ h6 {
 }
 
 .parallax-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100vw;
+  height: auto;
   object-position: top center;
   pointer-events: none;
 }
@@ -89,5 +93,5 @@ h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 40px;
+  padding: 120px 40px 40px 40px;
 }

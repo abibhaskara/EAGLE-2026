@@ -7,9 +7,21 @@ const ParallaxBackground = () => {
     const updateParallax = () => {
       const scrolled = window.scrollY;
       const parallaxBg = document.querySelector('.parallax-bg');
-      if (parallaxBg) {
+      const video = document.querySelector('.parallax-video');
+      
+      if (parallaxBg && video) {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const videoHeight = video.getBoundingClientRect().height;
+        
+        // Calculate how much extra video height we have beyond the screen
+        let maxTranslate = videoHeight - window.innerHeight;
+        if (maxTranslate < 0) maxTranslate = 0; // Prevent upward translation if video is too short
+        
+        // Proportional translate: reaches exactly the bottom of the video at the bottom of the page
+        const translateY = (scrolled / maxScroll) * maxTranslate;
+        
         // Use translate3d to force GPU hardware acceleration
-        parallaxBg.style.transform = `translate3d(0, ${-scrolled * 0.2}px, 0)`;
+        parallaxBg.style.transform = `translate3d(0, ${-translateY}px, 0)`;
       }
       ticking = false;
     };

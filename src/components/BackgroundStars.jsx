@@ -17,22 +17,26 @@ const BackgroundStars = () => {
 
     const initStars = () => {
       stars = [];
-      const numStars = Math.floor((canvas.width * canvas.height) / 12000);
+      const numStars = Math.floor((canvas.width * canvas.height) / 20000);
       for (let i = 0; i < numStars; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          alpha: Math.random(),
-          speed: Math.random() * 0.05 + 0.01,
-          glow: Math.random() > 0.8 // Some stars glow more
-        });
+          const r = Math.random() * 1.5 + 0.5;
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: r,
+            alpha: Math.random(),
+            speed: Math.random() * 0.05 + 0.001,
+            glow: Math.random() > 0.9, // Some stars glow more
+            parallaxSpeed: r * 0.15 // Larger stars move faster
+          });
       }
     };
 
     const drawStars = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
+      const currentScrollY = window.scrollY;
+
       stars.forEach(star => {
         // Blinking effect
         star.alpha += star.speed;
@@ -40,16 +44,21 @@ const BackgroundStars = () => {
           star.speed = -star.speed;
         }
 
+        // Apply true parallax logic: scroll offset with wrapping
+        const parallaxOffset = currentScrollY * star.parallaxSpeed;
+        let drawY = (star.y - parallaxOffset) % canvas.height;
+        if (drawY < 0) drawY += canvas.height;
+
         if (star.glow) {
           // Simulate glow with a larger transparent circle instead of expensive shadowBlur
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+          ctx.arc(star.x, drawY, star.radius * 3, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(212, 175, 55, ${Math.abs(star.alpha) * 0.3})`;
           ctx.fill();
         }
 
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.arc(star.x, drawY, star.radius, 0, Math.PI * 2);
         const alphaStr = Math.abs(star.alpha).toFixed(2);
         ctx.fillStyle = `rgba(255, 255, 255, ${alphaStr})`;
         ctx.fill();

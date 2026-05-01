@@ -26,8 +26,8 @@ const MainCard = () => {
       </div>
 
       <div className="links-section">
-        <LinkButton title="EAGLE 2024 Registration Link" url="#" />
-        <LinkButton title="EAGLE 2024 Guidebook" url="#" />
+        <LinkButton title="EAGLE 2026 Registration Link" url="#" />
+        <LinkButton title="EAGLE 2026 Guidebook" url="#" />
       </div>
 
       <div className="contact-section">
@@ -39,7 +39,7 @@ const MainCard = () => {
         <p className="section-desc" style={{ marginTop: '30px', marginBottom: '20px', textAlign: 'center' }}>
           You can also reach our email,<br />debatesmansacommunity@gmail.com
         </p>
-        <LinkButton title="email" url="#" />
+        <LinkButton title="email" url="mailto:debatesmansacommunity@gmail.com" />
       </div>
 
       <footer className="footer">

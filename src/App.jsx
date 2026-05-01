@@ -53,7 +53,7 @@ function App() {
 
   return (
     <>
-      <audio ref={audioRef} src="/bgmusic.webm" loop />
+      <audio ref={audioRef} src="/bgmusic.mp3" loop />
       <BackgroundStars />
       <ParallaxBackground />
       

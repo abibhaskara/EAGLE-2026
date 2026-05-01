@@ -7,7 +7,7 @@ const MainCard = () => {
     <div className="main-card">
       <div className="profile-section">
         <div className="profile-image-container">
-          <img src="/logo.png" alt="Profile" className="profile-image" />
+          <img src="/logo.webp" alt="Profile" className="profile-image" />
           <div className="profile-glow"></div>
         </div>
         <h1 className="main-title">EAGLE 2026</h1>

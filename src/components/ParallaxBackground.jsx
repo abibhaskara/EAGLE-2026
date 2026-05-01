@@ -27,7 +27,16 @@ const ParallaxBackground = () => {
 
   return (
     <>
-      <div className="parallax-bg"></div>
+      <div className="parallax-bg">
+        <video 
+          className="parallax-video" 
+          src="/bg.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        ></video>
+      </div>
       <div className="parallax-overlay"></div>
     </>
   );

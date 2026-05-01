@@ -17,7 +17,7 @@ const BackgroundStars = () => {
 
     const initStars = () => {
       stars = [];
-      const numStars = Math.floor((canvas.width * canvas.height) / 8000);
+      const numStars = Math.floor((canvas.width * canvas.height) / 12000);
       for (let i = 0; i < numStars; i++) {
         stars.push({
           x: Math.random() * canvas.width,
@@ -40,19 +40,18 @@ const BackgroundStars = () => {
           star.speed = -star.speed;
         }
 
+        if (star.glow) {
+          // Simulate glow with a larger transparent circle instead of expensive shadowBlur
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(212, 175, 55, ${Math.abs(star.alpha) * 0.3})`;
+          ctx.fill();
+        }
+
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        
         const alphaStr = Math.abs(star.alpha).toFixed(2);
         ctx.fillStyle = `rgba(255, 255, 255, ${alphaStr})`;
-        
-        if (star.glow) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = `rgba(212, 175, 55, ${alphaStr})`;
-        } else {
-          ctx.shadowBlur = 0;
-        }
-        
         ctx.fill();
       });
 

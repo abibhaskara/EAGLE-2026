@@ -40,7 +40,7 @@ h6 {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 125vh;
+  height: 130vh;
   /* Extra height to prevent white space when translating UP */
   background-image: url('./assets/bg%20gif.gif');
   background-size: cover;

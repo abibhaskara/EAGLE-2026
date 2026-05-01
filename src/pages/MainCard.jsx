@@ -43,7 +43,7 @@ const MainCard = () => {
       </div>
 
       <footer className="footer">
-        <p>made with creativity by abi bhaskara</p>
+        <p>made with creativity by <a href="https://portfolio.abibhaskara.com" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'underline'}}>abi bhaskara</a></p>
       </footer>
     </div>
   );

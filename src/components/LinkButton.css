@@ -1,0 +1,106 @@
+.link-button-wrapper {
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  margin: 20px 0;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.link-button-wrapper:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.link-button-inner {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20, 20, 45, 0.9) 0%, rgba(10, 10, 30, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 20px 32px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(10, 10, 30, 0.8);
+  overflow: visible;
+}
+
+.link-button-text {
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.link-button-wrapper:hover .link-button-text {
+  color: var(--accent-gold-light);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+/* Decorative Gold Borders */
+.deco-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--accent-gold);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.top-left {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.top-right {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+}
+
+.bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Edges */
+.deco-edge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.6;
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.top-edge {
+  top: -1px;
+}
+
+.bottom-edge {
+  bottom: -1px;
+}
+
+.link-button-wrapper:hover .deco-edge {
+  opacity: 1;
+  width: 80%;
+}
+
+.link-button-wrapper:hover .deco-corner {
+  box-shadow: 0 0 10px var(--accent-gold);
+}

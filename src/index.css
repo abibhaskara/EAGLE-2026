@@ -1,0 +1,83 @@
+:root {
+  --primary-color: #0b0a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3d9;
+  --accent-gold: #d4af37;
+  --accent-gold-light: #fbeea1;
+  --border-color: rgba(212, 175, 55, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'New Rocker', system-ui;
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'New Rocker', system-ui;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Background Parallax */
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 125vh;
+  /* Extra height to prevent white space when translating UP */
+  background-image: url('./assets/bg%20gif.gif');
+  background-size: 100vw auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(11, 10, 26, 0.4) 0%, rgba(11, 10, 26, 0.8) 100%);
+  z-index: -1;
+}
+
+/* Canvas stars */
+#stars-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* App container */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+}

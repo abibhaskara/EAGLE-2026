@@ -2,16 +2,26 @@ import React, { useEffect } from 'react';
 
 const ParallaxBackground = () => {
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const updateParallax = () => {
       const scrolled = window.scrollY;
       const parallaxBg = document.querySelector('.parallax-bg');
       if (parallaxBg) {
-        // Move the background UP slightly based on scroll position (slower than foreground)
-        parallaxBg.style.transform = `translateY(${-scrolled * 0.2}px)`;
+        // Use translate3d to force GPU hardware acceleration
+        parallaxBg.style.transform = `translate3d(0, ${-scrolled * 0.2}px, 0)`;
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

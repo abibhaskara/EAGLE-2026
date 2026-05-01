@@ -48,6 +48,11 @@ h6 {
   background-repeat: no-repeat;
   z-index: -2;
   transition: transform 0.1s ease-out;
+  /* Force Hardware Acceleration (GPU) to reduce lag on mobile */
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .parallax-overlay {

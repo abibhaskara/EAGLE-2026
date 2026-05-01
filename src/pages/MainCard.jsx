@@ -20,7 +20,7 @@ const MainCard = () => {
       </div>
 
       <div className="text-section">
-        <h2 className="section-title">EAGLE 2024 Grand Theme</h2>
+        <h2 className="section-title">EAGLE 2026 Grand Theme</h2>
         <p className="grand-theme-quote"><em>"Unveiling the Futuristic World: A Glimpse into Tomorrow"</em></p>
         <p className="section-desc">A visionary concept in shaping our future. Participants will delve into topics such as advanced technology, sustainable solutions, and societal changes, offering insights about what tomorrow may hold.</p>
       </div>
@@ -35,9 +35,9 @@ const MainCard = () => {
         <p className="section-desc" style={{ marginBottom: '20px', textAlign: 'center' }}>For further information, be sure to reach out the contact person below:</p>
         <LinkButton title="cp 1" url="#" />
         <LinkButton title="cp 2" url="#" />
-        
+
         <p className="section-desc" style={{ marginTop: '30px', marginBottom: '20px', textAlign: 'center' }}>
-          You can also reach our email,<br/>debatesmansacommunity@gmail.com
+          You can also reach our email,<br />debatesmansacommunity@gmail.com
         </p>
         <LinkButton title="email" url="#" />
       </div>

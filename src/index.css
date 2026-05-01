@@ -43,7 +43,7 @@ h6 {
   height: 125vh;
   /* Extra height to prevent white space when translating UP */
   background-image: url('./assets/bg%20gif.gif');
-  background-size: 100vw auto;
+  background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
   z-index: -2;

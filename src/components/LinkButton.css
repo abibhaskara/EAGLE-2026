@@ -24,7 +24,6 @@
   letter-spacing: 0.15em;
   color: var(--gold-leaf);
   background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
-  border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -40,7 +39,6 @@
   right: 2px;
   bottom: 2px;
   border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 6px;
   pointer-events: none;
 }
 

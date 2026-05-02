@@ -1,27 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const ParallaxBackground = () => {
+  const containerRef = useRef(null);
+  const videoRef = useRef(null);
+
   useEffect(() => {
     let ticking = false;
+    let videoHeight = 0;
+    let maxScroll = 0;
+    let maxTranslate = 0;
+
+    const updateMeasurements = () => {
+      if (videoRef.current) {
+        videoHeight = videoRef.current.offsetHeight;
+        maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        maxTranslate = Math.max(0, videoHeight - window.innerHeight);
+      }
+    };
 
     const updateParallax = () => {
       const scrolled = window.scrollY;
-      const parallaxBg = document.querySelector('.parallax-bg');
-      const video = document.querySelector('.parallax-video');
-      
-      if (parallaxBg && video) {
-        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        const videoHeight = video.getBoundingClientRect().height;
-        
-        // Calculate how much extra video height we have beyond the screen
-        let maxTranslate = videoHeight - window.innerHeight;
-        if (maxTranslate < 0) maxTranslate = 0; // Prevent upward translation if video is too short
-        
-        // Proportional translate: reaches exactly the bottom of the video at the bottom of the page
+      if (containerRef.current && maxScroll > 0) {
         const translateY = (scrolled / maxScroll) * maxTranslate;
-        
-        // Use translate3d to force GPU hardware acceleration
-        parallaxBg.style.transform = `translate3d(0, ${-translateY}px, 0)`;
+        containerRef.current.style.transform = `translate3d(0, ${-translateY}px, 0)`;
       }
       ticking = false;
     };
@@ -33,14 +34,32 @@ const ParallaxBackground = () => {
       }
     };
 
+    const handleResize = () => {
+      updateMeasurements();
+      updateParallax();
+    };
+
+    // Initial measurements after a short delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      updateMeasurements();
+      updateParallax();
+    }, 500);
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
     <>
-      <div className="parallax-bg">
+      <div className="parallax-bg" ref={containerRef}>
         <video 
+          ref={videoRef}
           className="parallax-video" 
           src="/bg.mp4" 
           autoPlay 

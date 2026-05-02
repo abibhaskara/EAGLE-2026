@@ -14,13 +14,14 @@ const ParallaxBackground = ({ animateIn }) => {
     const updateMeasurements = () => {
       if (videoRef.current) {
         videoHeight = videoRef.current.offsetHeight;
+        // Use document.body to get the most accurate content height
         maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
         maxTranslate = Math.max(0, videoHeight - window.innerHeight);
       }
     };
 
     const updateParallax = () => {
-      // Clamp scroll value between 0 and maxScroll to prevent glitching on overscroll
+      // Re-read scroll height just in case, but keep it performant
       const scrolled = Math.max(0, Math.min(window.scrollY, maxScroll));
       
       if (containerRef.current && maxScroll > 0) {
@@ -38,25 +39,27 @@ const ParallaxBackground = ({ animateIn }) => {
     };
 
     const handleResize = () => {
-      // Only recalculate if width changed (ignores mobile URL bar height changes)
-      if (window.innerWidth !== lastWidth) {
-        lastWidth = window.innerWidth;
-        updateMeasurements();
-        updateParallax();
-      }
-    };
-
-    // Initial measurements after a short delay to ensure DOM is ready
-    const timer = setTimeout(() => {
       updateMeasurements();
       updateParallax();
-    }, 500);
+      lastWidth = window.innerWidth;
+    };
+
+    // Use ResizeObserver to detect any height changes in the document (reveal animations, etc.)
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    
+    resizeObserver.observe(document.body);
+
+    // Initial measurements after a short delay
+    const timer = setTimeout(handleResize, 500);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize);
 
     return () => {
       clearTimeout(timer);
+      resizeObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };

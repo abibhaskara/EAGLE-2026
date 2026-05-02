@@ -58,7 +58,7 @@ h6 {
 
 .parallax-video {
   width: 100vw;
-  height: 220vh;
+  height: 1330px;
   object-fit: cover;
   object-position: top center;
   pointer-events: none;

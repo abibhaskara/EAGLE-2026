@@ -38,8 +38,8 @@ const MainCard = () => {
 
       <div className="text-section reveal grand-theme-section">
         <h2 className="section-title">EAGLE 2026 Grand Theme</h2>
-        <p className="grand-theme-quote"><em>"Unveiling the Futuristic World: A Glimpse into Tomorrow"</em></p>
-        <p className="section-desc">A visionary concept in shaping our future. Participants will delve into topics such as advanced technology, sustainable solutions, and societal changes, offering insights about what tomorrow may hold.</p>
+        <p className="grand-theme-quote"><em>Let Your Truth Fly On The Wings of Fantasy</em></p>
+        <p className="section-desc">Harnessing the power of creative imagination to liberate authentic voices, this theme empowers participants to transcend the limits of reality and fearlessly express their inner truths.</p>
       </div>
 
       <div className="links-section reveal">
@@ -60,7 +60,7 @@ const MainCard = () => {
       </div>
 
       <footer className="footer reveal">
-        <p>made with creativity by <a href="https://portfolio.abibhaskara.com" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'underline'}}>abi bhaskara</a></p>
+        <p>made with creativity by <a href="https://portfolio.abibhaskara.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>abi bhaskara</a></p>
       </footer>
     </div>
   );

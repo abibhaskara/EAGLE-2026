@@ -34,28 +34,36 @@
 
 .profile-glow {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 49%;
+  left: 51%;
   transform: translate(-50%, -50%);
-  width: 75%;
-  /* Scaled down to hide strictly behind the opaque logo */
-  height: 75%;
+  width: 70%;
+  height: 70%;
   border-radius: 50%;
-  box-shadow: 0 0 60px 20px rgba(212, 175, 55, 0.5);
-  /* Deep core glow */
+  background: radial-gradient(circle, rgba(170, 165, 147, 0.4) 0%, transparent 65%);
+  box-shadow:
+    0 0 25px 8px rgba(212, 175, 55, 0.5),
+    0 0 50px 15px rgba(212, 175, 55, 0.2);
   z-index: 1;
-  animation: glowPulse 3s infinite alternate ease-in-out;
-  will-change: transform, box-shadow;
+  animation: glowPulse 4s infinite alternate ease-in-out;
+  will-change: transform, box-shadow, opacity;
 }
 
 @keyframes glowPulse {
   0% {
-    box-shadow: 0 0 40px 10px rgba(212, 175, 55, 0.4);
-    transform: translate(-50%, -50%) scale(0.85);
+    box-shadow:
+      0 0 15px 5px rgba(212, 175, 55, 0.4),
+      0 0 40px 10px rgba(212, 175, 55, 0.1);
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.5;
   }
+
   100% {
-    box-shadow: 0 0 80px 25px rgba(212, 175, 55, 0.6);
-    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow:
+      0 0 35px 12px rgba(212, 175, 55, 0.6),
+      0 0 70px 25px rgba(212, 175, 55, 0.3);
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
   }
 }
 

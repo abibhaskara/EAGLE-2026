@@ -12,11 +12,12 @@ function App() {
   useEffect(() => {
     // Initialize Lenis Smooth Scrolling
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
+      wheelMultiplier: 1.2,
     });
 
     function raf(time) {
@@ -28,7 +29,7 @@ function App() {
 
     // Audio Logic
     const audio = audioRef.current;
-    
+
     const tryPlayAudio = () => {
       if (!audio) return;
       audio.play().catch(e => console.log("Play prevented by browser:", e));
@@ -54,7 +55,7 @@ function App() {
       audio.volume = 0.5;
       tryPlayAudio();
       document.addEventListener('visibilitychange', handleVisibilityChange);
-      
+
       // Safari and strict browsers need a user interaction to start audio.
       // We listen for the first click or touch to trigger playback.
       document.addEventListener('click', handleFirstInteraction);
@@ -74,11 +75,11 @@ function App() {
       <audio ref={audioRef} src="/bgmusic.mp3" loop />
       <BackgroundStars />
       <ParallaxBackground />
-      
+
       {showOpening && (
         <OpeningAnimation isActive={showOpening} onComplete={() => setShowOpening(false)} />
       )}
-      
+
       <div className="app-container fade-in">
         <MainCard />
       </div>

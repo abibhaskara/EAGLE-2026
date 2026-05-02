@@ -19,16 +19,16 @@ const BackgroundStars = () => {
       stars = [];
       const numStars = Math.floor((canvas.width * canvas.height) / 20000);
       for (let i = 0; i < numStars; i++) {
-          const r = Math.random() * 1.5 + 0.5;
-          stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: r,
-            alpha: Math.random(),
-            speed: Math.random() * 0.05 + 0.001,
-            glow: Math.random() > 0.9, // Some stars glow more
-            parallaxSpeed: r * 0.15 // Larger stars move faster
-          });
+        const r = Math.random() * 1.5 + 0.5;
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: r,
+          alpha: Math.random(),
+          speed: Math.random() * 0.05 + 0.001,
+          glow: Math.random() > 0.9, // Some stars glow more
+          parallaxSpeed: r * 1.5 // Stronger parallax effect based on size
+        });
       }
     };
 
@@ -40,7 +40,7 @@ const BackgroundStars = () => {
       stars.forEach(star => {
         // Blinking effect
         star.alpha += star.speed;
-        if (star.alpha <= 0 || star.alpha >= 1) {
+        if (star.alpha <= 0 || star.alpha >= 0.7) {
           star.speed = -star.speed;
         }
 
@@ -60,7 +60,7 @@ const BackgroundStars = () => {
         ctx.beginPath();
         ctx.arc(star.x, drawY, star.radius, 0, Math.PI * 2);
         const alphaStr = Math.abs(star.alpha).toFixed(2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${alphaStr})`;
+        ctx.fillStyle = `rgba(212, 175, 55, ${alphaStr})`;
         ctx.fill();
       });
 

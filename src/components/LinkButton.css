@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap');
+
 
 :root {
   --blood-red: #4a0404;
@@ -15,7 +15,7 @@
   max-width: 450px;
   margin: 15px auto;
   padding: 1.8rem 2rem;
-  font-family: 'Cinzel', serif;
+  font-family: 'New Rocker', system-ui;
   font-size: 11px;
   font-weight: 700;
   text-align: center;
@@ -23,7 +23,10 @@
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--gold-leaf);
-  background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  background: 
+    radial-gradient(circle at center, transparent 30%, rgba(12, 10, 31, 1) 100%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83L53.957 2.33l-.83-.83.71-.71-.71-.71L52.417 1.1l-.71-.71 1.41-1.41.71.71.71-.71 1.09 1.09zM5.373 0L4.543.83 6.043 2.33l.83-.83-.71-.71.71-.71L7.583 1.1l.71-.71-1.41-1.41-.71.71-.71-.71-1.09 1.09zM0 5.373L.83 4.543 2.33 6.043l-.83.83-.71-.71-.71.71L1.1 7.583.39 8.293l-1.41-1.41.71-.71-.71-.71 1.09-1.09zM60 5.373l-.83-.83-1.5 1.5.83.83.71-.71.71.71.71-.71.71.71 1.41-1.41-.71-.71.71-.71-1.09-1.09zM12 0l5 5V0h-5zm38 0l-5 5V0h5zM0 12l5 5H0v-5zm60 0l-5 5h5v-5zM30 20l5 5h-10l5-5zm0 20l-5-5h10l-5 5zM20 30l5-5v10l-5-5zm20 0l-5 5V25l5 5z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #2e1065 0%, #0c0a1f 100%);
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,11 +50,11 @@
   color: #fff;
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.8),
-    0 -15px 20px -10px rgba(197, 160, 89, 0.8),
-    0 15px 20px -10px rgba(197, 160, 89, 0.8),
-    inset 0 -15px 20px -10px rgba(197, 160, 89, 0.5),
-    inset 0 15px 20px -10px rgba(197, 160, 89, 0.5);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    0 -15px 20px -10px rgba(197, 160, 89, 0.35),
+    0 15px 20px -10px rgba(197, 160, 89, 0.35),
+    inset 0 -15px 20px -10px rgba(197, 160, 89, 0.15),
+    inset 0 15px 20px -10px rgba(197, 160, 89, 0.15);
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 

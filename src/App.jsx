@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import OpeningAnimation from './components/OpeningAnimation';
+import './components/OpeningAnimation.css';
 import BackgroundStars from './components/BackgroundStars';
 import ParallaxBackground from './components/ParallaxBackground';
 import MainCard from './pages/MainCard';
@@ -74,14 +75,16 @@ function App() {
     <>
       <audio ref={audioRef} src="/bgmusic.mp3" loop />
       <BackgroundStars />
-      <ParallaxBackground />
+      <ParallaxBackground animateIn={!showOpening} />
 
       {showOpening && (
         <OpeningAnimation isActive={showOpening} onComplete={() => setShowOpening(false)} />
       )}
 
-      <div className="app-container fade-in">
-        <MainCard />
+      <div className={`app-container${!showOpening ? ' fade-in' : ''}`}>
+        <div className="content-wrapper">
+          <MainCard openingDone={!showOpening} />
+        </div>
       </div>
     </>
   );

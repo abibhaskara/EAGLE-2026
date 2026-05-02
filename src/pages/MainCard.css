@@ -107,22 +107,27 @@
   text-align: center;
   padding: 15px 10px;
   margin: 10px 0 20px 0;
-  text-shadow: 0 0 15px rgba(73, 3, 139, 0.9), 0 0 30px rgba(73, 3, 139, 0.7);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.5);
   font-weight: 400;
   line-height: 1.5;
 }
 
-.grand-theme-section {
-  margin-top: 120px;
-  margin-bottom: 120px;
+.grand-theme-links-section {
+  width: 100%;
+  margin-top: 140px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.links-section {
+.links-group {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 80px;
+  margin-top: 30px;
 }
 
 .contact-section {

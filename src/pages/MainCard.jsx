@@ -2,23 +2,39 @@ import React, { useEffect } from 'react';
 import LinkButton from '../components/LinkButton';
 import './MainCard.css';
 
-const MainCard = () => {
+const MainCard = ({ openingDone }) => {
   useEffect(() => {
+    if (!openingDone) return;
+
+    const revealElements = Array.from(document.querySelectorAll('.reveal'));
+    const belowFold = [];
+
+    // Stagger-reveal elements currently visible in the viewport — one by one, slowly
+    let delay = 200; // small initial pause after opening
+    revealElements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        setTimeout(() => el.classList.add('active'), delay);
+        delay += 900; // 900ms gap so each one clearly appears before the next
+      } else {
+        belowFold.push(el); // only these go to IntersectionObserver
+      }
+    });
+
+    // IntersectionObserver strictly handles below-fold elements on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !entry.target.classList.contains('active')) {
           entry.target.classList.add('active');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12 });
 
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el) => observer.observe(el));
+    belowFold.forEach((el) => observer.observe(el));
 
-    return () => {
-      revealElements.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
+    return () => belowFold.forEach((el) => observer.unobserve(el));
+  }, [openingDone]);
 
   return (
     <div className="main-card">
@@ -36,15 +52,14 @@ const MainCard = () => {
         <p className="section-desc">EAGLE (Educating Active Generation by Learning English) is an annual English competition organized by Smansa Debating Community for junior high school students around Bali. EAGLE Competition includes four competition categories: Debate Competition, Speech Competition, Story Telling Competition, and News Casting Competition.</p>
       </div>
 
-      <div className="text-section reveal grand-theme-section">
+      <div className="grand-theme-links-section reveal">
         <h2 className="section-title">EAGLE 2026 Grand Theme</h2>
         <p className="grand-theme-quote"><em>Let Your Truth Fly On The Wings of Fantasy</em></p>
         <p className="section-desc">Harnessing the power of creative imagination to liberate authentic voices, this theme empowers participants to transcend the limits of reality and fearlessly express their inner truths.</p>
-      </div>
-
-      <div className="links-section reveal">
-        <LinkButton title="EAGLE 2026 Registration Link" url="#" />
-        <LinkButton title="EAGLE 2026 Guidebook" url="#" />
+        <div className="links-group">
+          <LinkButton title="EAGLE 2026 Registration Link" url="#" />
+          <LinkButton title="EAGLE 2026 Guidebook" url="#" />
+        </div>
       </div>
 
       <div className="contact-section reveal">
@@ -53,7 +68,7 @@ const MainCard = () => {
         <LinkButton title="cp 1" url="#" />
         <LinkButton title="cp 2" url="#" />
 
-        <p className="section-desc" style={{ marginTop: '30px', marginBottom: '20px', textAlign: 'center' }}>
+        <p className="section-desc" style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>
           You can also reach our email,<br />debatesmansacommunity@gmail.com
         </p>
         <LinkButton title="email" url="mailto:debatesmansacommunity@gmail.com" />

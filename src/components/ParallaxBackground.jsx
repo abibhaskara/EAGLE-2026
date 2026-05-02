@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const ParallaxBackground = () => {
+const ParallaxBackground = ({ animateIn }) => {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -60,12 +60,25 @@ const ParallaxBackground = () => {
       <div className="parallax-bg" ref={containerRef}>
         <video 
           ref={videoRef}
-          className="parallax-video" 
+          className={`parallax-video${animateIn ? ' bg-zoom-out' : ''}`}
           src="/bg.mp4" 
           autoPlay 
           loop 
           muted 
           playsInline
+          preload="auto"
+          onLoadedMetadata={() => {
+            const video = videoRef.current;
+            if (video) {
+              const videoHeight = video.offsetHeight;
+              const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+              const maxTranslate = Math.max(0, videoHeight - window.innerHeight);
+              // Store these if needed, but the effect uses local variables in the hook closure.
+              // Actually the hook closure variables won't be updated this way easily.
+              // I should use a shared object or just dispatch a resize event.
+              window.dispatchEvent(new Event('resize'));
+            }
+          }}
         ></video>
       </div>
       <div className="parallax-overlay"></div>

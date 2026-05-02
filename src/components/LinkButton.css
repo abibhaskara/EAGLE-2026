@@ -24,7 +24,6 @@
   letter-spacing: 0.15em;
   color: var(--gold-leaf);
   background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
-  border: 2px solid #3b3b1e;
   border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
@@ -48,8 +47,6 @@
 /* Hover Glow - Updated to Gold */
 .fantasy-button:hover {
   color: #fff;
-  border-top-color: var(--gold-leaf);
-  border-bottom-color: var(--gold-leaf);
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.8),
     0 -15px 20px -10px rgba(197, 160, 89, 0.8),

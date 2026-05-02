@@ -9,6 +9,7 @@ const ParallaxBackground = ({ animateIn }) => {
     let videoHeight = 0;
     let maxScroll = 0;
     let maxTranslate = 0;
+    let lastWidth = window.innerWidth;
 
     const updateMeasurements = () => {
       if (videoRef.current) {
@@ -19,7 +20,9 @@ const ParallaxBackground = ({ animateIn }) => {
     };
 
     const updateParallax = () => {
-      const scrolled = window.scrollY;
+      // Clamp scroll value between 0 and maxScroll to prevent glitching on overscroll
+      const scrolled = Math.max(0, Math.min(window.scrollY, maxScroll));
+      
       if (containerRef.current && maxScroll > 0) {
         const translateY = (scrolled / maxScroll) * maxTranslate;
         containerRef.current.style.transform = `translate3d(0, ${-translateY}px, 0)`;
@@ -35,8 +38,12 @@ const ParallaxBackground = ({ animateIn }) => {
     };
 
     const handleResize = () => {
-      updateMeasurements();
-      updateParallax();
+      // Only recalculate if width changed (ignores mobile URL bar height changes)
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        updateMeasurements();
+        updateParallax();
+      }
     };
 
     // Initial measurements after a short delay to ensure DOM is ready

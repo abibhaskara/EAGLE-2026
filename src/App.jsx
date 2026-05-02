@@ -13,12 +13,12 @@ function App() {
   useEffect(() => {
     // Initialize Lenis Smooth Scrolling
     const lenis = new Lenis({
-      duration: 8,
+      duration: 4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
-      wheelMultiplier: 1.2,
+      wheelMultiplier: 1.5,
     });
 
     function raf(time) {

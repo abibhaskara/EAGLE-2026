@@ -62,30 +62,32 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
     return (
         <div className="opening-container" style={{ opacity: phase === 4 ? 0 : 1 }}>
             <div className="opening-gradient" style={{ opacity: phase >= 3 ? 0.3 : 1 }} />
-            {phase >= 1 && constellationStars.map((star, i) => (
-                <div key={i} className="star-point" style={{ 
-                    left: `${star.x}%`, 
-                    top: `${star.y}%`,
-                    animationDelay: `${star.delay}s`
-                }}>
-                    <div className="star-dot" />
-                </div>
-            ))}
-            <svg className="constellation-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                {phase >= 2 && (
-                    <path
-                        d={constellationLines.map(([from, to]) => {
-                            const s1 = constellationStars[from];
-                            const s2 = constellationStars[to];
-                            return `M ${s1.x},${s1.y} L ${s2.x},${s2.y}`;
-                        }).join(' ')}
-                        className="constellation-line"
-                        style={{ strokeDasharray: '1000', strokeDashoffset: '1000' }}
-                        fill="none"
-                        vectorEffect="non-scaling-stroke"
-                    />
-                )}
-            </svg>
+            <div className="constellation-wrapper">
+                {phase >= 1 && constellationStars.map((star, i) => (
+                    <div key={i} className="star-point" style={{ 
+                        left: `${star.x}%`, 
+                        top: `${star.y}%`,
+                        animationDelay: `${star.delay}s`
+                    }}>
+                        <div className="star-dot" />
+                    </div>
+                ))}
+                <svg className="constellation-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                    {phase >= 2 && (
+                        <path
+                            d={constellationLines.map(([from, to]) => {
+                                const s1 = constellationStars[from];
+                                const s2 = constellationStars[to];
+                                return `M ${s1.x},${s1.y} L ${s2.x},${s2.y}`;
+                            }).join(' ')}
+                            className="constellation-line"
+                            style={{ strokeDasharray: '1000', strokeDashoffset: '1000' }}
+                            fill="none"
+                            vectorEffect="non-scaling-stroke"
+                        />
+                    )}
+                </svg>
+            </div>
         </div>
     );
 };

@@ -117,12 +117,21 @@
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
 }
 
+.constellation-wrapper {
+  position: relative;
+  width: 100vmin;
+  height: 100vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 .constellation-svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 
 .constellation-line {

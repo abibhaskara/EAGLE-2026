@@ -47,7 +47,7 @@ h6 {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: var(--primary-color);
   z-index: -2;
   overflow: hidden;
@@ -61,7 +61,7 @@ h6 {
 
 .parallax-video {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   min-height: 180vh;
   object-fit: cover;
   object-position: top center;
@@ -89,7 +89,7 @@ h6 {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: transparent;
   z-index: -1;
 }
@@ -99,7 +99,7 @@ h6 {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   z-index: -1;
   pointer-events: none;
 }
@@ -107,11 +107,11 @@ h6 {
 .app-container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 40px 40px 40px;
+  padding: 100px 40px 120px 40px;
   opacity: 0;
 }
 

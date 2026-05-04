@@ -12,18 +12,24 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
     const [phase, setPhase] = useState(0);
 
     const constellationStars = useMemo(() => [
-        { x: 20, y: 40, delay: 0 }, { x: 26, y: 42, delay: 0.1 },
-        { x: 40, y: 44, delay: 0.2 }, { x: 55, y: 42, delay: 0.3 },
-        { x: 75, y: 38, delay: 0.4 }, { x: 82, y: 32, delay: 0.5 },
-        { x: 70, y: 50, delay: 0.6 }, { x: 62, y: 62, delay: 0.7 },
-        { x: 52, y: 72, delay: 0.8 }, { x: 42, y: 62, delay: 0.9 },
-        { x: 30, y: 52, delay: 1.0 },
+        { x: 80, y: 50, delay: 0 },    // 0: Beak Tip
+        { x: 72, y: 44, delay: 0.1 },  // 1: Upper Beak
+        { x: 62, y: 38, delay: 0.2 },  // 2: Forehead
+        { x: 50, y: 35, delay: 0.3 },  // 3: Crown
+        { x: 35, y: 42, delay: 0.4 },  // 4: Back of Head
+        { x: 30, y: 55, delay: 0.5 },  // 5: Back Neck
+        { x: 45, y: 65, delay: 0.6 },  // 6: Throat
+        { x: 55, y: 58, delay: 0.7 },  // 7: Jaw
+        { x: 70, y: 52, delay: 0.8 },  // 8: Lower Beak
+        { x: 62, y: 45, delay: 0.9 },  // 9: Eye
     ], []);
 
     const constellationLines = useMemo(() => [
-        [0, 1], [1, 2], [2, 3], [3, 4], [4, 5],
-        [4, 6], [6, 7], [7, 8],
-        [0, 10], [10, 9], [9, 8]
+        [0, 1], [1, 2], [2, 3], [3, 4], // Top curve
+        [4, 5], [5, 6], [6, 7], [7, 8], // Bottom curve
+        [8, 0],                         // Close beak
+        [1, 8],                         // Beak base
+        [2, 9], [1, 9]                  // Eye highlight
     ], []);
 
     useEffect(() => {

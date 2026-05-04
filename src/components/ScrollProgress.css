@@ -1,4 +1,4 @@
-/**
+/*
  * ────────────────────────────────────────────────────────────
  * [ DESIGN & DEVELOPMENT ]
  * Crafted with passion by Abi Bhaskara
@@ -6,13 +6,28 @@
  * ────────────────────────────────────────────────────────────
  */
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 1000;
+  pointer-events: none;
+}
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+  position: relative;
+  will-change: width;
+}
+
+.scroll-progress-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  box-shadow: 0 0 15px 4px var(--accent-gold);
+}

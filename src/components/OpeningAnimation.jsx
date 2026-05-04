@@ -1,9 +1,16 @@
+/**
+ * ────────────────────────────────────────────────────────────
+ * [ DESIGN & DEVELOPMENT ]
+ * Crafted with passion by Abi Bhaskara
+ * Discover more: https://abibhaskara.com
+ * ────────────────────────────────────────────────────────────
+ */
+
 import React, { useState, useEffect, useMemo } from 'react';
 
 const OpeningAnimation = ({ isActive, onComplete }) => {
     const [phase, setPhase] = useState(0);
 
-    // Capricorn constellation stars
     const constellationStars = useMemo(() => [
         { x: 20, y: 40, delay: 0 }, { x: 26, y: 42, delay: 0.1 },
         { x: 40, y: 44, delay: 0.2 }, { x: 55, y: 42, delay: 0.3 },
@@ -25,8 +32,8 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
         const t1 = setTimeout(() => setPhase(1), 100);
         const t2 = setTimeout(() => setPhase(2), 1000);
         const t3 = setTimeout(() => setPhase(3), 2000);
-        const t4 = setTimeout(() => setPhase(4), 5000);
-        const t5 = setTimeout(() => onComplete?.(), 6000);
+        const t4 = setTimeout(() => setPhase(4), 4500);
+        const t5 = setTimeout(() => onComplete?.(), 5500);
         return () => {
             document.body.style.overflow = '';
             clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); clearTimeout(t5);
@@ -36,65 +43,32 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
     if (!isActive) return null;
 
     return (
-        <div 
-            style={{ 
-                position: 'fixed', inset: 0, zIndex: 200, 
-                display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                overflow: 'hidden', backgroundColor: 'var(--primary-color)',
-                opacity: phase === 4 ? 0 : 1,
-                transition: 'opacity 0.5s ease'
-            }}
-        >
-            <div 
-                style={{ 
-                    position: 'absolute', inset: 0, 
-                    background: 'radial-gradient(ellipse at center, #1a2744 0%, #0b0a1a 100%)',
-                    opacity: phase >= 3 ? 0.3 : 1,
-                    transition: 'opacity 2s ease'
-                }}
-            />
-
+        <div className="opening-container" style={{ opacity: phase === 4 ? 0 : 1 }}>
+            <div className="opening-gradient" style={{ opacity: phase >= 3 ? 0.3 : 1 }} />
             {phase >= 1 && constellationStars.map((star, i) => (
-                <div key={i} style={{ 
-                    position: 'absolute', left: `${star.x}%`, top: `${star.y}%`,
-                    transform: 'scale(0)',
-                    animation: `popIn 0.5s ease forwards`,
+                <div key={i} className="star-point" style={{ 
+                    left: `${star.x}%`, 
+                    top: `${star.y}%`,
                     animationDelay: `${star.delay}s`
                 }}>
-                    <div style={{ width: '8px', height: '8px', backgroundColor: 'var(--accent-gold)', borderRadius: '50%', boxShadow: '0 0 10px rgba(212,175,55,0.8)' }} />
+                    <div className="star-dot" />
                 </div>
             ))}
-
-            <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-                {phase >= 2 && constellationLines.map(([from, to], i) => {
-                    const s1 = constellationStars[from];
-                    const s2 = constellationStars[to];
-                    
-                    // We use strokeDasharray and strokeDashoffset to animate line drawing in CSS
-                    return (
-                        <line key={i} x1={`${s1.x}%`} y1={`${s1.y}%`} x2={`${s2.x}%`} y2={`${s2.y}%`}
-                            stroke="rgba(212, 175, 55, 0.4)" strokeWidth="1"
-                            strokeDasharray="2000"
-                            strokeDashoffset="2000"
-                            style={{
-                                animation: `drawLine 1s ease forwards`,
-                                animationDelay: `${i * 0.1}s`
-                            }}
-                        />
-                    );
-                })}
+            <svg className="constellation-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                {phase >= 2 && (
+                    <path
+                        d={constellationLines.map(([from, to]) => {
+                            const s1 = constellationStars[from];
+                            const s2 = constellationStars[to];
+                            return `M ${s1.x},${s1.y} L ${s2.x},${s2.y}`;
+                        }).join(' ')}
+                        className="constellation-line"
+                        style={{ strokeDasharray: '1000', strokeDashoffset: '1000' }}
+                        fill="none"
+                        vectorEffect="non-scaling-stroke"
+                    />
+                )}
             </svg>
-
-            <style>{`
-                @keyframes popIn {
-                    0% { transform: scale(0); }
-                    100% { transform: scale(1); }
-                }
-                @keyframes drawLine {
-                    0% { stroke-dashoffset: 2000; }
-                    100% { stroke-dashoffset: 0; }
-                }
-            `}</style>
         </div>
     );
 };

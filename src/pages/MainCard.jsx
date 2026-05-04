@@ -1,28 +1,34 @@
+/**
+ * ────────────────────────────────────────────────────────────
+ * [ DESIGN & DEVELOPMENT ]
+ * Crafted with passion by Abi Bhaskara
+ * Discover more: https://abibhaskara.com
+ * ────────────────────────────────────────────────────────────
+ */
+
 import React, { useEffect } from 'react';
 import LinkButton from '../components/LinkButton';
+import CountdownTimer from '../components/CountdownTimer';
 import './MainCard.css';
 
-const MainCard = ({ openingDone }) => {
+const MainCard = React.memo(({ openingDone }) => {
   useEffect(() => {
     if (!openingDone) return;
-
     const revealElements = Array.from(document.querySelectorAll('.reveal'));
     const belowFold = [];
-
-    // Stagger-reveal elements currently visible in the viewport — one by one, slowly
-    let delay = 200; // small initial pause after opening
+    const timeouts = [];
+    let delay = 200;
     revealElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
       const inView = rect.top < window.innerHeight && rect.bottom > 0;
       if (inView) {
-        setTimeout(() => el.classList.add('active'), delay);
-        delay += 900; // 900ms gap so each one clearly appears before the next
+        const t = setTimeout(() => el.classList.add('active'), delay);
+        timeouts.push(t);
+        delay += 900;
       } else {
-        belowFold.push(el); // only these go to IntersectionObserver
+        belowFold.push(el);
       }
     });
-
-    // IntersectionObserver strictly handles below-fold elements on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !entry.target.classList.contains('active')) {
@@ -30,10 +36,12 @@ const MainCard = ({ openingDone }) => {
         }
       });
     }, { threshold: 0.12 });
-
     belowFold.forEach((el) => observer.observe(el));
-
-    return () => belowFold.forEach((el) => observer.unobserve(el));
+    return () => {
+      timeouts.forEach(t => clearTimeout(t));
+      belowFold.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
+    };
   }, [openingDone]);
 
   return (
@@ -45,6 +53,7 @@ const MainCard = ({ openingDone }) => {
         </div>
         <h1 className="main-title">EAGLE 2026</h1>
         <p className="main-desc">Annual English Competition held by Smansa Debating Community for Junior High Schoolers Around Bali.</p>
+        <CountdownTimer targetDate="2026-06-25T23:59:00+08:00" />
       </div>
 
       <div className="text-section reveal">
@@ -63,11 +72,9 @@ const MainCard = ({ openingDone }) => {
       </div>
 
       <div className="contact-section reveal">
-
         <p className="section-desc" style={{ marginBottom: '20px', textAlign: 'center' }}>For further information, be sure to reach out the contact person below:</p>
         <LinkButton title="cp 1" url="#" />
         <LinkButton title="cp 2" url="#" />
-
         <p className="section-desc" style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>
           You can also reach our email,<br />debatesmansacommunity@gmail.com
         </p>
@@ -79,6 +86,6 @@ const MainCard = ({ openingDone }) => {
       </footer>
     </div>
   );
-};
+});
 
 export default MainCard;

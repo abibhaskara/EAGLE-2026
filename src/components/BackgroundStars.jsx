@@ -1,3 +1,11 @@
+/**
+ * ────────────────────────────────────────────────────────────
+ * [ DESIGN & DEVELOPMENT ]
+ * Crafted with passion by Abi Bhaskara
+ * Discover more: https://abibhaskara.com
+ * ────────────────────────────────────────────────────────────
+ */
+
 import React, { useEffect, useRef } from 'react';
 
 const BackgroundStars = () => {
@@ -26,44 +34,32 @@ const BackgroundStars = () => {
           radius: r,
           alpha: Math.random(),
           speed: Math.random() * 0.05 + 0.001,
-          glow: Math.random() > 0.9, // Some stars glow more
-          parallaxSpeed: r * 1.5 // Stronger parallax effect based on size
+          glow: Math.random() > 0.9,
+          parallaxSpeed: r * 1.5
         });
       }
     };
 
     const drawStars = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       const currentScrollY = window.scrollY;
-
       stars.forEach(star => {
-        // Blinking effect
         star.alpha += star.speed;
-        if (star.alpha <= 0 || star.alpha >= 0.7) {
-          star.speed = -star.speed;
-        }
-
-        // Apply true parallax logic: scroll offset with wrapping
+        if (star.alpha <= 0 || star.alpha >= 0.7) star.speed = -star.speed;
         const parallaxOffset = currentScrollY * star.parallaxSpeed;
         let drawY = (star.y - parallaxOffset) % canvas.height;
         if (drawY < 0) drawY += canvas.height;
-
         if (star.glow) {
-          // Simulate glow with a larger transparent circle instead of expensive shadowBlur
           ctx.beginPath();
           ctx.arc(star.x, drawY, star.radius * 3, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(212, 175, 55, ${Math.abs(star.alpha) * 0.3})`;
           ctx.fill();
         }
-
         ctx.beginPath();
         ctx.arc(star.x, drawY, star.radius, 0, Math.PI * 2);
-        const alphaStr = Math.abs(star.alpha).toFixed(2);
-        ctx.fillStyle = `rgba(212, 175, 55, ${alphaStr})`;
+        ctx.fillStyle = `rgba(212, 175, 55, ${Math.abs(star.alpha).toFixed(2)})`;
         ctx.fill();
       });
-
       animationFrameId = requestAnimationFrame(drawStars);
     };
 
@@ -80,4 +76,4 @@ const BackgroundStars = () => {
   return <canvas id="stars-canvas" ref={canvasRef} />;
 };
 
-export default BackgroundStars;
+export default React.memo(BackgroundStars);

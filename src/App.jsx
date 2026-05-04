@@ -1,24 +1,35 @@
+/**
+ * ────────────────────────────────────────────────────────────
+ * [ DESIGN & DEVELOPMENT ]
+ * Crafted with passion by Abi Bhaskara
+ * Discover more: https://abibhaskara.com
+ * ────────────────────────────────────────────────────────────
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import OpeningAnimation from './components/OpeningAnimation';
 import './components/OpeningAnimation.css';
 import BackgroundStars from './components/BackgroundStars';
 import ParallaxBackground from './components/ParallaxBackground';
-import MainCard from './pages/MainCard';
+import ScrollProgress from './components/ScrollProgress';
+
+const MainCard = React.lazy(() => import('./pages/MainCard'));
 
 function App() {
   const [showOpening, setShowOpening] = useState(true);
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Initialize Lenis Smooth Scrolling
     const lenis = new Lenis({
-      duration: 4,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
-      wheelMultiplier: 1.5,
+      smoothTouch: true,
+      touchMultiplier: 1.5,
+      wheelMultiplier: 1.2,
     });
 
     function raf(time) {
@@ -28,12 +39,11 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    // Audio Logic
     const audio = audioRef.current;
 
     const tryPlayAudio = () => {
       if (!audio) return;
-      audio.play().catch(e => console.log("Play prevented by browser:", e));
+      audio.play().catch(e => {});
     };
 
     const handleVisibilityChange = () => {
@@ -47,7 +57,6 @@ function App() {
 
     const handleFirstInteraction = () => {
       tryPlayAudio();
-      // Remove the listeners once interacted so it doesn't try to play on every click
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);
     };
@@ -56,9 +65,6 @@ function App() {
       audio.volume = 0.5;
       tryPlayAudio();
       document.addEventListener('visibilitychange', handleVisibilityChange);
-
-      // Safari and strict browsers need a user interaction to start audio.
-      // We listen for the first click or touch to trigger playback.
       document.addEventListener('click', handleFirstInteraction);
       document.addEventListener('touchstart', handleFirstInteraction);
     }
@@ -73,7 +79,8 @@ function App() {
 
   return (
     <>
-      <audio ref={audioRef} src="/bgmusic.mp3" loop />
+      <ScrollProgress />
+      <audio ref={audioRef} src="/bgmusic.mp3" loop preload="none" />
       <BackgroundStars />
       <ParallaxBackground animateIn={!showOpening} />
 
@@ -83,7 +90,9 @@ function App() {
 
       <div className={`app-container${!showOpening ? ' fade-in' : ''}`}>
         <div className="content-wrapper">
-          <MainCard openingDone={!showOpening} />
+          <React.Suspense fallback={null}>
+            <MainCard openingDone={!showOpening} />
+          </React.Suspense>
         </div>
       </div>
     </>

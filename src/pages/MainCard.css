@@ -1,3 +1,11 @@
+/*
+ * ────────────────────────────────────────────────────────────
+ * [ DESIGN & DEVELOPMENT ]
+ * Crafted with passion by Abi Bhaskara
+ * Discover more: https://abibhaskara.com
+ * ────────────────────────────────────────────────────────────
+ */
+
 .main-card {
   width: 100%;
   max-width: 735px;
@@ -9,7 +17,7 @@
 }
 
 .profile-section {
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +35,6 @@
   height: 100%;
   border-radius: 50%;
   object-fit: contain;
-  /* ensures the entire logo is visible */
   position: relative;
   z-index: 2;
 }
@@ -41,9 +48,7 @@
   height: 70%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(170, 165, 147, 0.4) 0%, transparent 65%);
-  box-shadow:
-    0 0 25px 8px rgba(212, 175, 55, 0.5),
-    0 0 50px 15px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 25px 8px rgba(212, 175, 55, 0.5), 0 0 50px 15px rgba(212, 175, 55, 0.2);
   z-index: 1;
   animation: glowPulse 4s infinite alternate ease-in-out;
   will-change: transform, box-shadow, opacity;
@@ -51,17 +56,12 @@
 
 @keyframes glowPulse {
   0% {
-    box-shadow:
-      0 0 15px 5px rgba(212, 175, 55, 0.4),
-      0 0 40px 10px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 15px 5px rgba(212, 175, 55, 0.4), 0 0 40px 10px rgba(212, 175, 55, 0.1);
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0.5;
   }
-
   100% {
-    box-shadow:
-      0 0 35px 12px rgba(212, 175, 55, 0.6),
-      0 0 70px 25px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 35px 12px rgba(212, 175, 55, 0.6), 0 0 70px 25px rgba(212, 175, 55, 0.3);
     transform: translate(-50%, -50%) scale(1.1);
     opacity: 1;
   }
@@ -138,13 +138,6 @@
   margin-bottom: 50px;
 }
 
-.contact-title {
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--text-primary);
-  margin-bottom: 25px;
-}
-
 .footer {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -160,31 +153,11 @@
   margin-bottom: 10px;
 }
 
-.footer-sparkle {
-  font-size: 2rem;
-  color: var(--accent-gold);
-  animation: sparkleRotate 4s infinite linear;
-}
-
-@keyframes sparkleRotate {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-
-  50% {
-    transform: rotate(180deg) scale(1.2);
-  }
-
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-/* Scroll Reveal Animation */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
 }
 
 .reveal.active {

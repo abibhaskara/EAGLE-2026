@@ -1,10 +1,18 @@
+/*
+ * ────────────────────────────────────────────────────────────
+ * [ DESIGN & DEVELOPMENT ]
+ * Crafted with passion by Abi Bhaskara
+ * Discover more: https://abibhaskara.com
+ * ────────────────────────────────────────────────────────────
+ */
+
 .opening-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #05040d; /* Very dark blue/black */
+  background-color: #05040d;
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -39,27 +47,14 @@
 }
 
 @keyframes fallingStar {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-120vw, 120vh) scale(0.5);
-    opacity: 0;
-  }
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(-120vw, 120vh) scale(0.5); opacity: 0; }
 }
 
 @keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
 }
 
 .fade-in {
@@ -81,10 +76,69 @@
 
 @keyframes fadeInOpacity {
   from { opacity: 0; }
-  to   { opacity: 1; }
+  to { opacity: 1; }
 }
 
 @keyframes zoomOutSettle {
   from { transform: scale(1.3); }
-  to   { transform: scale(1); }
+  to { transform: scale(1); }
+}
+
+.opening-container {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--primary-color);
+  transition: opacity 0.5s ease;
+}
+
+.opening-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, #1a2744 0%, #0b0a1a 100%);
+  transition: opacity 2s ease;
+}
+
+.star-point {
+  position: absolute;
+  transform: scale(0);
+  animation: popIn 0.5s ease forwards;
+}
+
+.star-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+.constellation-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.constellation-line {
+  stroke: rgba(212, 175, 55, 0.4);
+  stroke-width: 1;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawLine 1s ease forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+@keyframes drawLine {
+  0% { stroke-dashoffset: 2000; }
+  100% { stroke-dashoffset: 0; }
 }

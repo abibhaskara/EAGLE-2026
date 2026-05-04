@@ -12,25 +12,25 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
     const [phase, setPhase] = useState(0);
 
     const constellationStars = useMemo(() => [
-        { x: 15, y: 50, delay: 0 },    // 0: Beak Tip
-        { x: 25, y: 42, delay: 0.1 },  // 1: Upper Beak
-        { x: 35, y: 42, delay: 0.2 },  // 2: Beak Base Top
-        { x: 45, y: 35, delay: 0.3 },  // 3: Forehead
-        { x: 58, y: 32, delay: 0.4 },  // 4: Crown
-        { x: 70, y: 30, delay: 0.5 },  // 5: Tuft
-        { x: 82, y: 45, delay: 0.6 },  // 6: Upper Back
-        { x: 85, y: 58, delay: 0.7 },  // 7: Nape
-        { x: 80, y: 75, delay: 0.8 },  // 8: Lower Neck
-        { x: 65, y: 82, delay: 0.9 },  // 9: Chest
-        { x: 50, y: 78, delay: 1.0 },  // 10: Mid Throat
-        { x: 40, y: 68, delay: 1.1 },  // 11: Lower Throat
-        { x: 38, y: 58, delay: 1.2 },  // 12: Jaw
-        { x: 30, y: 55, delay: 1.3 },  // 13: Lower Beak Base
-        { x: 18, y: 54, delay: 1.4 },  // 14: Lower Beak Tip
-        { x: 44, y: 46, delay: 1.5 },  // 15: Eye
-        { x: 38, y: 42, delay: 1.6 },  // 16: Brow Front
-        { x: 48, y: 42, delay: 1.7 },  // 17: Brow Back
-        { x: 22, y: 47, delay: 1.8 },  // 18: Nostril
+        { x: 15, y: 44, delay: 0 },    // 0: Beak Tip
+        { x: 25, y: 36, delay: 0.1 },  // 1: Upper Beak
+        { x: 35, y: 36, delay: 0.2 },  // 2: Beak Base Top
+        { x: 45, y: 29, delay: 0.3 },  // 3: Forehead
+        { x: 58, y: 26, delay: 0.4 },  // 4: Crown
+        { x: 70, y: 24, delay: 0.5 },  // 5: Tuft
+        { x: 82, y: 39, delay: 0.6 },  // 6: Upper Back
+        { x: 85, y: 52, delay: 0.7 },  // 7: Nape
+        { x: 80, y: 69, delay: 0.8 },  // 8: Lower Neck
+        { x: 65, y: 76, delay: 0.9 },  // 9: Chest
+        { x: 50, y: 72, delay: 1.0 },  // 10: Mid Throat
+        { x: 40, y: 62, delay: 1.1 },  // 11: Lower Throat
+        { x: 38, y: 52, delay: 1.2 },  // 12: Jaw
+        { x: 30, y: 49, delay: 1.3 },  // 13: Lower Beak Base
+        { x: 18, y: 48, delay: 1.4 },  // 14: Lower Beak Tip
+        { x: 44, y: 40, delay: 1.5 },  // 15: Eye
+        { x: 38, y: 36, delay: 1.6 },  // 16: Brow Front
+        { x: 48, y: 36, delay: 1.7 },  // 17: Brow Back
+        { x: 22, y: 41, delay: 1.8 },  // 18: Nostril
     ], []);
 
     const constellationLines = useMemo(() => [

@@ -12,24 +12,29 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
     const [phase, setPhase] = useState(0);
 
     const constellationStars = useMemo(() => [
-        { x: 80, y: 50, delay: 0 },    // 0: Beak Tip
-        { x: 72, y: 44, delay: 0.1 },  // 1: Upper Beak
-        { x: 62, y: 38, delay: 0.2 },  // 2: Forehead
+        { x: 20, y: 50, delay: 0 },    // 0: Beak Tip
+        { x: 28, y: 44, delay: 0.1 },  // 1: Upper Beak
+        { x: 38, y: 38, delay: 0.2 },  // 2: Forehead
         { x: 50, y: 35, delay: 0.3 },  // 3: Crown
-        { x: 35, y: 42, delay: 0.4 },  // 4: Back of Head
-        { x: 30, y: 55, delay: 0.5 },  // 5: Back Neck
-        { x: 45, y: 65, delay: 0.6 },  // 6: Throat
-        { x: 55, y: 58, delay: 0.7 },  // 7: Jaw
-        { x: 70, y: 52, delay: 0.8 },  // 8: Lower Beak
-        { x: 62, y: 45, delay: 0.9 },  // 9: Eye
+        { x: 65, y: 33, delay: 0.4 },  // 4: Tuft
+        { x: 72, y: 42, delay: 0.5 },  // 5: Back Head
+        { x: 75, y: 55, delay: 0.6 },  // 6: Upper Neck
+        { x: 70, y: 68, delay: 0.7 },  // 7: Mid Neck
+        { x: 55, y: 72, delay: 0.8 },  // 8: Throat
+        { x: 45, y: 65, delay: 0.9 },  // 9: Lower Throat
+        { x: 40, y: 58, delay: 1.0 },  // 10: Jaw
+        { x: 30, y: 52, delay: 1.1 },  // 11: Lower Beak
+        { x: 38, y: 45, delay: 1.2 },  // 12: Eye
+        { x: 25, y: 48, delay: 1.3 },  // 13: Nostril
     ], []);
 
     const constellationLines = useMemo(() => [
-        [0, 1], [1, 2], [2, 3], [3, 4], // Top curve
-        [4, 5], [5, 6], [6, 7], [7, 8], // Bottom curve
-        [8, 0],                         // Close beak
-        [1, 8],                         // Beak base
-        [2, 9], [1, 9]                  // Eye highlight
+        [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], // Top silhouette
+        [5, 6], [6, 7], [7, 8], [8, 9], [9, 10], // Neck silhouette
+        [10, 11], [11, 0],                       // Beak closing
+        [1, 11],                                 // Beak base
+        [2, 12], [1, 12],                        // Eye focus
+        [1, 13]                                  // Detail
     ], []);
 
     useEffect(() => {

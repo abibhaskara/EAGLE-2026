@@ -12,29 +12,35 @@ const OpeningAnimation = ({ isActive, onComplete }) => {
     const [phase, setPhase] = useState(0);
 
     const constellationStars = useMemo(() => [
-        { x: 20, y: 50, delay: 0 },    // 0: Beak Tip
-        { x: 28, y: 44, delay: 0.1 },  // 1: Upper Beak
-        { x: 38, y: 38, delay: 0.2 },  // 2: Forehead
-        { x: 50, y: 35, delay: 0.3 },  // 3: Crown
-        { x: 65, y: 33, delay: 0.4 },  // 4: Tuft
-        { x: 72, y: 42, delay: 0.5 },  // 5: Back Head
-        { x: 75, y: 55, delay: 0.6 },  // 6: Upper Neck
-        { x: 70, y: 68, delay: 0.7 },  // 7: Mid Neck
-        { x: 55, y: 72, delay: 0.8 },  // 8: Throat
-        { x: 45, y: 65, delay: 0.9 },  // 9: Lower Throat
-        { x: 40, y: 58, delay: 1.0 },  // 10: Jaw
-        { x: 30, y: 52, delay: 1.1 },  // 11: Lower Beak
-        { x: 38, y: 45, delay: 1.2 },  // 12: Eye
-        { x: 25, y: 48, delay: 1.3 },  // 13: Nostril
+        { x: 15, y: 50, delay: 0 },    // 0: Beak Tip
+        { x: 25, y: 42, delay: 0.1 },  // 1: Upper Beak
+        { x: 35, y: 42, delay: 0.2 },  // 2: Beak Base Top
+        { x: 45, y: 35, delay: 0.3 },  // 3: Forehead
+        { x: 58, y: 32, delay: 0.4 },  // 4: Crown
+        { x: 70, y: 30, delay: 0.5 },  // 5: Tuft
+        { x: 82, y: 45, delay: 0.6 },  // 6: Upper Back
+        { x: 85, y: 58, delay: 0.7 },  // 7: Nape
+        { x: 80, y: 75, delay: 0.8 },  // 8: Lower Neck
+        { x: 65, y: 82, delay: 0.9 },  // 9: Chest
+        { x: 50, y: 78, delay: 1.0 },  // 10: Mid Throat
+        { x: 40, y: 68, delay: 1.1 },  // 11: Lower Throat
+        { x: 38, y: 58, delay: 1.2 },  // 12: Jaw
+        { x: 30, y: 55, delay: 1.3 },  // 13: Lower Beak Base
+        { x: 18, y: 54, delay: 1.4 },  // 14: Lower Beak Tip
+        { x: 44, y: 46, delay: 1.5 },  // 15: Eye
+        { x: 38, y: 42, delay: 1.6 },  // 16: Brow Front
+        { x: 48, y: 42, delay: 1.7 },  // 17: Brow Back
+        { x: 22, y: 47, delay: 1.8 },  // 18: Nostril
     ], []);
 
     const constellationLines = useMemo(() => [
-        [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], // Top silhouette
-        [5, 6], [6, 7], [7, 8], [8, 9], [9, 10], // Neck silhouette
-        [10, 11], [11, 0],                       // Beak closing
-        [1, 11],                                 // Beak base
-        [2, 12], [1, 12],                        // Eye focus
-        [1, 13]                                  // Detail
+        [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], // Top edge
+        [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 12], // Bottom edge
+        [12, 13], [13, 14], [14, 0], // Beak connection
+        [1, 13], // Beak separation
+        [16, 17], // Brow
+        [15, 2], [15, 3], // Eye socket
+        [1, 18] // Nostril detail
     ], []);
 
     useEffect(() => {

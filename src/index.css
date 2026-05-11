@@ -52,7 +52,7 @@ h6 {
   z-index: -2;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 4s ease-out;
+  transition: opacity 10s ease-out;
 }
 
 .parallax-bg.visible {
@@ -60,26 +60,19 @@ h6 {
 }
 
 .parallax-video {
-  width: 110vw; /* Extra width for floating */
-  height: 110dvh; /* Extra height for floating */
+  width: 100vw;
+  height: 100dvh;
   min-height: 180vh;
   object-fit: cover;
   object-position: center;
   pointer-events: none;
-  transform: scale(1.1);
-  animation: floatingBg 35s ease-in-out infinite;
-}
-
-@keyframes floatingBg {
-  0% { transform: scale(1.05) translate(0, 0) rotate(0deg); filter: brightness(1) saturate(1); }
-  25% { transform: scale(1.12) translate(-1.5%, 1%) rotate(0.5deg); filter: brightness(1.1) saturate(1.1); }
-  50% { transform: scale(1.08) translate(1%, -1.5%) rotate(-0.3deg); filter: brightness(0.9) saturate(0.9); }
-  75% { transform: scale(1.15) translate(-1%, -2%) rotate(0.4deg); filter: brightness(1.05) saturate(1.05); }
-  100% { transform: scale(1.05) translate(0, 0) rotate(0deg); filter: brightness(1) saturate(1); }
+  transform: scale(1.5);
+  transition: transform 10s cubic-bezier(0.22, 1, 0.36, 1), opacity 2s ease-out;
+  opacity: 0;
 }
 
 .parallax-video.bg-zoom-out {
-  /* Combined with floating if needed, but for now we let floating take over */
+  transform: scale(1.1);
   opacity: 1;
 }
 

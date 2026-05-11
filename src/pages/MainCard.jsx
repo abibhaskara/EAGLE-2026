@@ -66,7 +66,7 @@ const MainCard = React.memo(({ openingDone }) => {
         <p className="grand-theme-quote"><em>Let Your Truth Fly On The Wings of Fantasy</em></p>
         <p className="section-desc">Harnessing the power of creative imagination to liberate authentic voices, this theme empowers participants to transcend the limits of reality and fearlessly express their inner truths.</p>
         <div className="links-group">
-          <LinkButton title="EAGLE 2026 Registration Link" url="#" />
+          <LinkButton title="EAGLE 2026 Registration Link" url="https://forms.gle/RPio13gSrADoRhvs9" />
           <LinkButton title="EAGLE 2026 Guidebook" url="#" />
         </div>
       </div>

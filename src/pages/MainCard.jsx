@@ -67,14 +67,14 @@ const MainCard = React.memo(({ openingDone }) => {
         <p className="section-desc">Harnessing the power of creative imagination to liberate authentic voices, this theme empowers participants to transcend the limits of reality and fearlessly express their inner truths.</p>
         <div className="links-group">
           <LinkButton title="EAGLE 2026 Registration Link" url="https://forms.gle/RPio13gSrADoRhvs9" />
-          <LinkButton title="EAGLE 2026 Guidebook" url="#" />
+          <LinkButton title="EAGLE 2026 Guidebook" url="https://drive.google.com/drive/folders/1zzV27z0LvDF1V7F58FUbP9MWJQQMuKy0" />
         </div>
       </div>
 
       <div className="contact-section reveal">
         <p className="section-desc" style={{ marginBottom: '20px', textAlign: 'center' }}>For further information, be sure to reach out the contact person below:</p>
-        <LinkButton title="cp 1" url="#" />
-        <LinkButton title="cp 2" url="#" />
+        <LinkButton title="Contact Person (Amrita)" url="https://wa.me/6281703005951" />
+        <LinkButton title="Contact Person (Arkisya)" url="https://wa.me/6281237033227" />
         <p className="section-desc" style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>
           You can also reach our email,<br />debatesmansacommunity@gmail.com
         </p>
